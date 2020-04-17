@@ -1,5 +1,7 @@
 name: Lint
-on: [push, pull_request]
+on:
+  schedule:
+    - cron:  '*/1 * * * *'
 jobs:
   lint:
     name: Lint
