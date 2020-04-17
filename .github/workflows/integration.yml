@@ -1,5 +1,7 @@
 name: Integration Test
-on: [push]
+on:
+  schedule:
+    - cron:  '*/1 * * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,4 +15,7 @@ jobs:
 
       - name: Check outputs
         run: |
-          test "${{ steps.selftest.outputs.myOutput }}" == "Hello world"
+          python main.py
+          git add .
+          git commit -m "automated commit"
+          git push
